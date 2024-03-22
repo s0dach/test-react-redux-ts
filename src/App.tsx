@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {useAppDispatch} from "./hooks/redux";
+import {LoginForm} from "./components/LoginForm";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import UserInfoForm from "./components/UserInfoForm";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useAppDispatch()
+
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/home" element={<UserInfoForm />} />
+                <Route path="/*" element={<UserInfoForm />} />
+                <Route path="/login" element={<LoginForm />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
